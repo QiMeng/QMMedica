@@ -13,4 +13,6 @@
 @property (nonatomic, copy) NSString * title;
 @property (nonatomic, copy) NSString * href;
 
+@property (nonatomic, copy) NSString * info;
+
 @end

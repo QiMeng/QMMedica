@@ -14,9 +14,14 @@
 + (instancetype)sharedClient;
 
 /**
- *  @param aPage   搜索页码
+ *  获取纲目列表
  */
 + (id)medicaPage:(int)aPage
    withBlock:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取本草详细信息
+ */
++ (id)info:(Model *)aModel withBlock:(void (^)(id infoModel, NSError *error))block;
 
 @end

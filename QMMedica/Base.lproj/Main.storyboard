@@ -30,7 +30,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U19-YM-TWF">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -45,7 +45,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="加载更多" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xx1-XJ-KW5">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -69,11 +69,48 @@
                     <navigationItem key="navigationItem" title="本草纲目" id="b9P-5g-xOe"/>
                     <connections>
                         <outlet property="mainTableView" destination="59b-ye-9uI" id="B5b-PA-E8D"/>
+                        <segue destination="lj6-a7-cAZ" kind="push" identifier="DetaileViewController" id="dPj-do-ZDm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1117" y="346"/>
+        </scene>
+        <!--Detaile View Controller-->
+        <scene sceneID="If1-V5-CnG">
+            <objects>
+                <viewController storyboardIdentifier="DetaileViewController" id="lj6-a7-cAZ" customClass="DetaileViewController" customModule="QMMedica" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J5f-qU-H4p"/>
+                        <viewControllerLayoutGuide type="bottom" id="w9e-wq-SeK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="55A-b2-jFs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2m-5o-qNg">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R2m-5o-qNg" firstAttribute="leading" secondItem="55A-b2-jFs" secondAttribute="leading" id="Dws-aA-4TE"/>
+                            <constraint firstItem="R2m-5o-qNg" firstAttribute="top" secondItem="J5f-qU-H4p" secondAttribute="bottom" id="Rom-OZ-e7b"/>
+                            <constraint firstItem="R2m-5o-qNg" firstAttribute="bottom" secondItem="w9e-wq-SeK" secondAttribute="top" id="g7K-3d-k0S"/>
+                            <constraint firstAttribute="trailing" secondItem="R2m-5o-qNg" secondAttribute="trailing" id="w5f-Mx-WRB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="yxI-9Y-UMA"/>
+                    <connections>
+                        <outlet property="mainText" destination="R2m-5o-qNg" id="ZxL-CA-mdj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HhK-PU-8Z5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1777" y="346"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lfi-X6-c2E">

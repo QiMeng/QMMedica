@@ -67,7 +67,6 @@
 
 + (NSArray *)parseMedicaList:(id)response {
     
-    
     NSMutableArray * mainArray = [NSMutableArray array];
     
     @autoreleasepool {
@@ -100,10 +99,7 @@
                                 m.href = [[element attributeForName:@"href"] stringValue];
                                 
                                 [mainArray addObject:m];
-
-                                NSLog(@"%@",m.title);
                             }
-                            
                         }
                     }
                 }
@@ -114,6 +110,72 @@
     return mainArray;
     
 }
+
+
+
+#pragma mark - 信息详情
++ (id)info:(Model *)aModel withBlock:(void (^)(id infoModel, NSError *error))block {
+    
+    return [[Service sharedClient] GET:aModel.href
+                            parameters:nil
+                               success:^(NSURLSessionDataTask *task, id responseObject) {
+                                   
+                                   block([self parseInfoModel:aModel withData:responseObject],nil);
+                                   
+                               } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                   [SVProgressHUD showErrorWithStatus:@"数据错误,请稍后再试"];
+                               }];
+    
+}
+
++ (Model *)parseInfoModel:(Model *)aModel withData:(id)response {
+    
+    aModel.info = @"";
+    
+    @autoreleasepool {
+        GDataXMLDocument * doc = [[GDataXMLDocument alloc]initWithHTMLData:response
+                                                                  encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
+                                                                     error:NULL];
+        if (doc) {
+            
+            NSArray * trArray = [doc nodesForXPath:@"//table" error:NULL];
+            
+            for (GDataXMLElement * item0 in trArray) {
+                
+                NSArray * tr = [item0 elementsForName:@"tr"];
+                
+                for (GDataXMLElement * item1 in tr) {
+                    
+                    NSArray * td = [item1 elementsForName:@"td"];
+
+                    if (td) {
+                        
+                        for (GDataXMLElement * item2 in td) {
+                            
+                            NSArray * dr = [item2 elementsForName:@"br"];
+                            
+                            if (dr) {
+
+                                NSString * xmlString = [item2.XMLString stringByReplacingOccurrencesOfString:@"<br/>" withString:@"\n"];
+                                xmlString = [xmlString stringByReplacingOccurrencesOfString:@"<td>" withString:@""];
+                                xmlString = [xmlString stringByReplacingOccurrencesOfString:@"</td>" withString:@""];
+                                
+                                
+                                aModel.info = xmlString;
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    return aModel;
+}
+
+
+
 
 
 @end

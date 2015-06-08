@@ -95,11 +95,19 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
             
             
             
-            //            self.performSegueWithIdentifier("DetaileTableController", sender: model)
+            self.performSegueWithIdentifier("DetaileViewController", sender: model)
         }
         
     }
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "DetaileViewController" {
+            
+            var ctrl = segue.destinationViewController as! DetaileViewController
+            ctrl.infoModel = sender as? Model
+        }
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
