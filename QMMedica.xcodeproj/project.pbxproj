@@ -428,13 +428,14 @@
 			baseConfigurationReference = 16045F9152629362B4D41989 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yongsheng liu (24D459F86D)";
 				INFOPLIST_FILE = QMMedica/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c804dc9c-5aff-4f49-9524-051528990435";
+				PROVISIONING_PROFILE = "52dd24db-06dc-41b5-bab8-7c5b70d59acd";
 				SWIFT_OBJC_BRIDGING_HEADER = "QMMedica/QMMedica-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -445,13 +446,14 @@
 			baseConfigurationReference = 018813D220E1D2A87BF0C113 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yongsheng liu (24D459F86D)";
 				INFOPLIST_FILE = QMMedica/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c804dc9c-5aff-4f49-9524-051528990435";
+				PROVISIONING_PROFILE = "52dd24db-06dc-41b5-bab8-7c5b70d59acd";
 				SWIFT_OBJC_BRIDGING_HEADER = "QMMedica/QMMedica-Bridging-Header.h";
 			};
 			name = Release;
