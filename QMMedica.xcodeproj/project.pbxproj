@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F178CCBD09C3C20C18AFB62 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1362A49E8C8A7F8F0AEEC4C8 /* libPods.a */; };
+		6C0431C91B25BE1C001893A4 /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0431C81B25BE1C001893A4 /* Service.m */; };
+		6C0431CE1B25C205001893A4 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0431CD1B25C205001893A4 /* Model.m */; };
 		FF6E4D0D1B2585B700ABC57E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6E4D0C1B2585B700ABC57E /* AppDelegate.swift */; };
 		FF6E4D0F1B2585B700ABC57E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6E4D0E1B2585B700ABC57E /* ViewController.swift */; };
 		FF6E4D121B2585B700ABC57E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF6E4D101B2585B700ABC57E /* Main.storyboard */; };
@@ -30,6 +32,11 @@
 		018813D220E1D2A87BF0C113 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1362A49E8C8A7F8F0AEEC4C8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		16045F9152629362B4D41989 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6C0431C61B25BE1C001893A4 /* QMMedica-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QMMedica-Bridging-Header.h"; sourceTree = "<group>"; };
+		6C0431C71B25BE1C001893A4 /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
+		6C0431C81B25BE1C001893A4 /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
+		6C0431CC1B25C205001893A4 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		6C0431CD1B25C205001893A4 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		FF6E4D071B2585B700ABC57E /* QMMedica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QMMedica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF6E4D0B1B2585B700ABC57E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF6E4D0C1B2585B700ABC57E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +77,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6C0431C51B25BE02001893A4 /* OCHELP */ = {
+			isa = PBXGroup;
+			children = (
+				6C0431C61B25BE1C001893A4 /* QMMedica-Bridging-Header.h */,
+				6C0431C71B25BE1C001893A4 /* Service.h */,
+				6C0431C81B25BE1C001893A4 /* Service.m */,
+				6C0431CC1B25C205001893A4 /* Model.h */,
+				6C0431CD1B25C205001893A4 /* Model.m */,
+			);
+			name = OCHELP;
+			sourceTree = "<group>";
+		};
 		E7E3D5EC239C485BB9AB1FD6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +122,7 @@
 			children = (
 				FF6E4D0C1B2585B700ABC57E /* AppDelegate.swift */,
 				FF6E4D0E1B2585B700ABC57E /* ViewController.swift */,
+				6C0431C51B25BE02001893A4 /* OCHELP */,
 				FF6E4D101B2585B700ABC57E /* Main.storyboard */,
 				FF6E4D131B2585B700ABC57E /* Images.xcassets */,
 				FF6E4D151B2585B700ABC57E /* LaunchScreen.xib */,
@@ -273,6 +293,8 @@
 			files = (
 				FF6E4D0F1B2585B700ABC57E /* ViewController.swift in Sources */,
 				FF6E4D0D1B2585B700ABC57E /* AppDelegate.swift in Sources */,
+				6C0431C91B25BE1C001893A4 /* Service.m in Sources */,
+				6C0431CE1B25C205001893A4 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,12 +424,15 @@
 			baseConfigurationReference = 16045F9152629362B4D41989 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Li Wei (4X728K54LX)";
 				INFOPLIST_FILE = QMMedica/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "63778686-107b-4e86-9b80-8ad7d1e15d93";
+				SWIFT_OBJC_BRIDGING_HEADER = "QMMedica/QMMedica-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -416,12 +441,14 @@
 			baseConfigurationReference = 018813D220E1D2A87BF0C113 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Li Wei (4X728K54LX)";
 				INFOPLIST_FILE = QMMedica/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "63778686-107b-4e86-9b80-8ad7d1e15d93";
+				SWIFT_OBJC_BRIDGING_HEADER = "QMMedica/QMMedica-Bridging-Header.h";
 			};
 			name = Release;
 		};
