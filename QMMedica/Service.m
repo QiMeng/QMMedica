@@ -182,12 +182,14 @@
 #pragma mark - 数据库
 + (NSString *)FMDBPath {
     
-    NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_Identifer = [infoDictionary objectForKey:@"CFBundleIdentifier"];
+    return  [[NSBundle mainBundle] pathForResource:@"QMMedica" ofType:@"db"];
     
-    NSLog(@"%@",docsdir);
-    return [NSString stringWithFormat:@"%@/%@.db",docsdir,app_Identifer];
+//    NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+//    NSString *app_Identifer = [infoDictionary objectForKey:@"CFBundleIdentifier"];
+//    
+//    NSLog(@"%@",docsdir);
+//    return [NSString stringWithFormat:@"%@/%@.db",docsdir,app_Identifer];
     
 }
 + (FMDatabase *)db {
@@ -230,28 +232,43 @@
         
     }
     
-    [db open];
-//    [db beginTransaction];
-    
-    for (int i=0; i< array.count; i++) {
-        
-        Model * m = array[i];
-        
-        [Service info:m withBlock:^(Model * infoModel, NSError *error) {
-           
-            [db executeUpdate:@"REPLACE INTO medica (href, title, info) VALUES (?,?,?)",infoModel.href,infoModel.title,infoModel.info];
-            
-            [SVProgressHUD showProgress:i/(1.0 * array.count)];
-            
-        }];
-        
-    }
-    
-//    [db commit];
-//    [db close];
+//    [db open];
+//    
+//    for (int i=0; i< array.count; i++) {
+//        
+//        Model * m = array[i];
+//        
+//        [Service info:m withBlock:^(Model * infoModel, NSError *error) {
+//           
+//            [db executeUpdate:@"REPLACE INTO medica (href, title, info) VALUES (?,?,?)",infoModel.href,infoModel.title,infoModel.info];
+//            
+//            [SVProgressHUD showProgress:i/(1.0 * array.count)];
+//            
+//        }];
+//        
+//    }
+
     return array;
 }
 
++ (NSArray *)searchDB:(NSString *)aSearch {
+    NSMutableArray * array = [NSMutableArray array];
+    
+    FMDatabase * db = [Service db];
+    
+    FMResultSet *rs = [db executeQuery:[NSString stringWithFormat:@"SELECT * FROM medica WHERE title LIKE  '%%%@%%'",aSearch]];
+    
+    while ([rs next]) {
+        
+        [array addObject:[[Model alloc]initWithTitle:[rs stringForColumn:@"title"]
+                                                href:[rs stringForColumn:@"href"]
+                                                info:[rs stringForColumn:@"info"]]];
+        
+        
+    }
+    
+    return array;
+}
 
 
 @end

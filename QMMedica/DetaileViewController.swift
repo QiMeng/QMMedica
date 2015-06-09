@@ -17,15 +17,18 @@ class DetaileViewController: UIViewController {
 
         self.title = infoModel?.title
         
-        SVProgressHUD.showWithStatus("努力加载...", maskType: SVProgressHUDMaskType.Black)
-        Service.info(infoModel, withBlock: { (aModel, error) -> Void in
-            
-            var model = aModel as! Model
-            
-            self.mainText.text = model.info
-            
-            SVProgressHUD.dismiss()
-        })
+        self.mainText.text = infoModel?.info
+        
+        
+//        SVProgressHUD.showWithStatus("努力加载...", maskType: SVProgressHUDMaskType.Black)
+//        Service.info(infoModel, withBlock: { (aModel, error) -> Void in
+//            
+//            var model = aModel as! Model
+//            
+//            self.mainText.text = model.info
+//            
+//            SVProgressHUD.dismiss()
+//        })
         // Do any additional setup after loading the view.
     }
 

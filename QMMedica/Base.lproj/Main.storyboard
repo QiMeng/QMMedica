@@ -20,6 +20,15 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="59b-ye-9uI">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="dIK-Ig-K0K">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="0.22352941179999999" green="0.58039215690000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="BYZ-38-t0r" id="P0V-f1-bPr"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="U19-YM-TWF" style="IBUITableViewCellStyleDefault" id="0by-kI-11e">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -68,6 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="本草纲目" id="b9P-5g-xOe"/>
                     <connections>
+                        <outlet property="mainSearch" destination="dIK-Ig-K0K" id="lYY-DP-xsB"/>
                         <outlet property="mainTableView" destination="59b-ye-9uI" id="B5b-PA-E8D"/>
                         <segue destination="lj6-a7-cAZ" kind="push" identifier="DetaileViewController" id="dPj-do-ZDm"/>
                     </connections>

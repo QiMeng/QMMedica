@@ -8,11 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource{
+class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     
     var dataArray:Array<Model> = []
     var pageInt:Int = 1
+    var searchArray:Array<Model> = []
     
+    @IBOutlet weak var mainSearch: UISearchBar!
     @IBOutlet weak var mainTableView: UITableView!
     
     override func viewDidLoad() {
@@ -23,11 +25,7 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         
         self.dataArray = Service.readDB() as! Array<Model>
         
-        
-        
-        
-//        Service.insertArray(self.dataArray)
-        
+        mainSearch.placeholder = "请输入要搜索的内容(\(self.dataArray.count))"
         
 //        SVProgressHUD.showWithStatus("努力加载...", maskType: SVProgressHUDMaskType.Black)
 //        Service.medicaPage(1, withBlock: { (list, error) -> Void in
@@ -43,9 +41,11 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        
-        
-        return self.dataArray.count + 1
+        if self.mainSearch.text.isEmpty {
+            return self.dataArray.count
+        }else {
+            return self.searchArray.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -61,9 +61,15 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
             
             var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
             
-            var m = self.dataArray[indexPath.row]
+            if self.mainSearch.text.isEmpty {
+                var m = self.dataArray[indexPath.row]
+                cell.textLabel?.text = m.title
+            }else {
+                var m = self.searchArray[indexPath.row]
+                cell.textLabel?.text = m.title
+            }
             
-            cell.textLabel?.text = m.title
+            
             
             return cell
         }
@@ -74,32 +80,40 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         
         if indexPath.row == dataArray.count {
             
-//            SVProgressHUD.showWithStatus("加载更多...", maskType: SVProgressHUDMaskType.Black)
-//            
-//            Service.medicaPage(Int32(self.pageInt)) { (array, error) -> Void in
-//                
-//                if self.dataArray.count > 0 && array.count > 0 {
-//                    
-//                    let model1 = self.dataArray.last as Model!
-//                    let model2 = array.last as! Model
-//                    
-//                    if model1.href == model2.href {
-//                        
-//                        SVProgressHUD.showErrorWithStatus("没有更多了")
-//                        return
-//                    }
-//                }
-//                
-//                self.dataArray += array as! Array<Model>
-//                self.mainTableView.reloadData()
-//                SVProgressHUD.dismiss()
-//                ++self.pageInt
-//                
-//            }
+            SVProgressHUD.showWithStatus("加载更多...", maskType: SVProgressHUDMaskType.Black)
+            
+            Service.medicaPage(Int32(self.pageInt)) { (array, error) -> Void in
+                
+                if self.dataArray.count > 0 && array.count > 0 {
+                    
+                    let model1 = self.dataArray.last as Model!
+                    let model2 = array.last as! Model
+                    
+                    if model1.href == model2.href {
+                        
+                        SVProgressHUD.showErrorWithStatus("没有更多了")
+                        return
+                    }
+                }
+                
+                self.dataArray += array as! Array<Model>
+                self.mainTableView.reloadData()
+                SVProgressHUD.dismiss()
+                ++self.pageInt
+                
+            }
             
         }
         else {
-            let model = dataArray[indexPath.row] as Model
+            
+            var model:Model?
+            if self.mainSearch.text.isEmpty {
+                model = self.dataArray[indexPath.row]
+
+            }else {
+                model = self.searchArray[indexPath.row]
+            }
+            
             self.performSegueWithIdentifier("DetaileViewController", sender: model)
         }
         
@@ -113,6 +127,34 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         }
         
     }
+
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        
+        self.mainSearch.setShowsCancelButton(true, animated: true)
+        
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+        self.mainSearch.text = ""
+        self.mainTableView.reloadData()
+        self.mainSearch.setShowsCancelButton(false, animated: true)
+        
+        self.mainSearch.resignFirstResponder()
+    }
+    
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        self.searchArray = Service.searchDB(searchBar.text) as!Array<Model>
+        
+        self.mainTableView.reloadData()
+        
+        self.mainSearch.setShowsCancelButton(false, animated: true)
+        self.mainSearch.resignFirstResponder()
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

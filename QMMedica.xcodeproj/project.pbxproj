@@ -11,6 +11,7 @@
 		6C0431C91B25BE1C001893A4 /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0431C81B25BE1C001893A4 /* Service.m */; };
 		6C0431CE1B25C205001893A4 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0431CD1B25C205001893A4 /* Model.m */; };
 		6C9817401B264C740024FDD3 /* DetaileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C98173F1B264C740024FDD3 /* DetaileViewController.swift */; };
+		6CAB6C2C1B271E0800FACF9E /* QMMedica.db in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB6C2B1B271E0800FACF9E /* QMMedica.db */; };
 		FF6E4D0D1B2585B700ABC57E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6E4D0C1B2585B700ABC57E /* AppDelegate.swift */; };
 		FF6E4D0F1B2585B700ABC57E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6E4D0E1B2585B700ABC57E /* ViewController.swift */; };
 		FF6E4D121B2585B700ABC57E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF6E4D101B2585B700ABC57E /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 		6C0431CC1B25C205001893A4 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		6C0431CD1B25C205001893A4 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		6C98173F1B264C740024FDD3 /* DetaileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetaileViewController.swift; sourceTree = "<group>"; };
+		6CAB6C2B1B271E0800FACF9E /* QMMedica.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = QMMedica.db; sourceTree = SOURCE_ROOT; };
 		FF6E4D071B2585B700ABC57E /* QMMedica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QMMedica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF6E4D0B1B2585B700ABC57E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF6E4D0C1B2585B700ABC57E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		6C0431C51B25BE02001893A4 /* OCHELP */ = {
 			isa = PBXGroup;
 			children = (
+				6CAB6C2B1B271E0800FACF9E /* QMMedica.db */,
 				6C0431C61B25BE1C001893A4 /* QMMedica-Bridging-Header.h */,
 				6C0431C71B25BE1C001893A4 /* Service.h */,
 				6C0431C81B25BE1C001893A4 /* Service.m */,
@@ -244,6 +247,7 @@
 				FF6E4D121B2585B700ABC57E /* Main.storyboard in Resources */,
 				FF6E4D171B2585B700ABC57E /* LaunchScreen.xib in Resources */,
 				FF6E4D141B2585B700ABC57E /* Images.xcassets in Resources */,
+				6CAB6C2C1B271E0800FACF9E /* QMMedica.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

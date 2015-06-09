@@ -30,6 +30,10 @@
 
 
 + (void)insertArray:(NSArray *)aArray;
+
+//获取所有的
 + (NSArray *)readDB;
+//搜索
++ (NSArray *)searchDB:(NSString *)aSearch;
 
 @end
