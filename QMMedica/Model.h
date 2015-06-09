@@ -15,4 +15,6 @@
 
 @property (nonatomic, copy) NSString * info;
 
+- (instancetype)initWithTitle:(NSString *)aTitle href:(NSString *)aHref info:(NSString *)aInfo;
+
 @end

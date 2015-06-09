@@ -28,6 +28,11 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.0):
     - CocoaLumberjack/Default
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
+    - FMDB/common
   - GDataXML-HTML (1.2.0)
   - iCarousel (1.8.1)
   - SDWebImage (3.7.2):
@@ -41,6 +46,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
   - CocoaLumberjack (~> 2.0.0)
+  - FMDB (~> 2.5)
   - GDataXML-HTML (~> 1.2.0)
   - iCarousel (~> 1.8.1)
   - SDWebImage (~> 3.7.2)
@@ -52,6 +58,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   GDataXML-HTML: dac3692417e9fc612f8e12d8baae3706fccedcc8
   iCarousel: dace1cb858e3f4dc2614bee3201041247f82feda
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29

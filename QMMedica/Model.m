@@ -10,4 +10,15 @@
 
 @implementation Model
 
+- (instancetype)initWithTitle:(NSString *)aTitle href:(NSString *)aHref info:(NSString *)aInfo
+{
+    self = [super init];
+    if (self) {
+        _title = aTitle;
+        _href = aHref;
+        _info = aInfo;
+    }
+    return self;
+}
+
 @end

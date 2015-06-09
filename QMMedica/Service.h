@@ -11,7 +11,11 @@
 
 @interface Service : AFHTTPSessionManager
 
++ (FMDatabase *)db;
+
 + (instancetype)sharedClient;
+
+
 
 /**
  *  获取纲目列表
@@ -23,5 +27,9 @@
  *  获取本草详细信息
  */
 + (id)info:(Model *)aModel withBlock:(void (^)(id infoModel, NSError *error))block;
+
+
++ (void)insertArray:(NSArray *)aArray;
++ (NSArray *)readDB;
 
 @end

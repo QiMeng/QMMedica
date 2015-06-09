@@ -11,6 +11,7 @@
 #import <iCarousel.h>
 #import <UIImage+ImageEffects.h>
 #import <UIImageView+WebCache.h>
+#import <FMDB.h>
 
 #import "Service.h"
 

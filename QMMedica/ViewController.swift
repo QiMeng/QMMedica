@@ -21,14 +21,22 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         
         self.mainTableView.tableFooterView = UIView()
         
-        SVProgressHUD.showWithStatus("努力加载...", maskType: SVProgressHUDMaskType.Black)
-        Service.medicaPage(1, withBlock: { (list, error) -> Void in
-            self.dataArray += list as! Array<Model>
-            
-            self.mainTableView.reloadData()
-            SVProgressHUD.dismiss()
-            ++self.pageInt
-        })
+        self.dataArray = Service.readDB() as! Array<Model>
+        
+        
+        
+        
+//        Service.insertArray(self.dataArray)
+        
+        
+//        SVProgressHUD.showWithStatus("努力加载...", maskType: SVProgressHUDMaskType.Black)
+//        Service.medicaPage(1, withBlock: { (list, error) -> Void in
+//            self.dataArray += list as! Array<Model>
+//            
+//            self.mainTableView.reloadData()
+//            SVProgressHUD.dismiss()
+//            ++self.pageInt
+//        })
         
     }
     
@@ -66,35 +74,32 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         
         if indexPath.row == dataArray.count {
             
-            SVProgressHUD.showWithStatus("加载更多...", maskType: SVProgressHUDMaskType.Black)
-            
-            Service.medicaPage(Int32(self.pageInt)) { (array, error) -> Void in
-                
-                if self.dataArray.count > 0 && array.count > 0 {
-                    
-                    let model1 = self.dataArray.last as Model!
-                    let model2 = array.last as! Model
-                    
-                    if model1.href == model2.href {
-                        
-                        SVProgressHUD.showErrorWithStatus("没有更多了")
-                        return
-                    }
-                }
-                
-                self.dataArray += array as! Array<Model>
-                self.mainTableView.reloadData()
-                SVProgressHUD.dismiss()
-                ++self.pageInt
-                
-            }
+//            SVProgressHUD.showWithStatus("加载更多...", maskType: SVProgressHUDMaskType.Black)
+//            
+//            Service.medicaPage(Int32(self.pageInt)) { (array, error) -> Void in
+//                
+//                if self.dataArray.count > 0 && array.count > 0 {
+//                    
+//                    let model1 = self.dataArray.last as Model!
+//                    let model2 = array.last as! Model
+//                    
+//                    if model1.href == model2.href {
+//                        
+//                        SVProgressHUD.showErrorWithStatus("没有更多了")
+//                        return
+//                    }
+//                }
+//                
+//                self.dataArray += array as! Array<Model>
+//                self.mainTableView.reloadData()
+//                SVProgressHUD.dismiss()
+//                ++self.pageInt
+//                
+//            }
             
         }
         else {
             let model = dataArray[indexPath.row] as Model
-            
-            
-            
             self.performSegueWithIdentifier("DetaileViewController", sender: model)
         }
         
