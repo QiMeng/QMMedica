@@ -15,7 +15,7 @@
 
 #import "Service.h"
 
-#define kBaseURLString @"http://bencao.supfree.net/"
+#define kBaseURLString @"http://zhongcaoyao.supfree.net/"
 
 /**
  *  app 软件在AppStore上的id

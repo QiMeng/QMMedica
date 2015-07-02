@@ -53,7 +53,7 @@
 + (id)medicaPage:(int)aPage
        withBlock:(void (^)(NSArray *array, NSError *error))block{
     
-    return [[Service sharedClient] GET:[NSString stringWithFormat:@"china.asp?id=1&page=%d",aPage]
+    return [[Service sharedClient] GET:[NSString stringWithFormat:@"drink.asp?page=%d",aPage]
                             parameters:nil
                                success:^(NSURLSessionDataTask *task, id responseObject) {
                                    
@@ -124,11 +124,12 @@
     return [[Service sharedClient] GET:aModel.href
                             parameters:nil
                                success:^(NSURLSessionDataTask *task, id responseObject) {
-                                   
+                                   NSLog(@"成功----%@:%@",aModel.title,aModel.href);
                                    block([self parseInfoModel:aModel withData:responseObject],nil);
                                    
                                } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                    [SVProgressHUD showErrorWithStatus:@"数据错误,请稍后再试"];
+                                   NSLog(@"失败----%@:%@",aModel.title,aModel.href);
                                }];
     
 }
@@ -157,14 +158,16 @@
                         
                         for (GDataXMLElement * item2 in td) {
                             
-                            NSArray * dr = [item2 elementsForName:@"br"];
+                            NSArray * dr = [item2 elementsForName:@"p"];
                             
                             if (dr) {
 
                                 NSString * xmlString = [item2.XMLString stringByReplacingOccurrencesOfString:@"<br/>" withString:@"\n"];
+                                xmlString = [xmlString stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+                                xmlString = [xmlString stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
                                 xmlString = [xmlString stringByReplacingOccurrencesOfString:@"<td>" withString:@""];
                                 xmlString = [xmlString stringByReplacingOccurrencesOfString:@"</td>" withString:@""];
-                                
+                                xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&#13;" withString:@""];
                                 
                                 aModel.info = xmlString.length?xmlString:@"";
                                 
@@ -182,14 +185,14 @@
 #pragma mark - 数据库
 + (NSString *)FMDBPath {
     
-    return  [[NSBundle mainBundle] pathForResource:@"QMMedica" ofType:@"db"];
+//    return  [[NSBundle mainBundle] pathForResource:@"QMMedica" ofType:@"db"];
     
-//    NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-//    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-//    NSString *app_Identifer = [infoDictionary objectForKey:@"CFBundleIdentifier"];
-//    
-//    NSLog(@"%@",docsdir);
-//    return [NSString stringWithFormat:@"%@/%@.db",docsdir,app_Identifer];
+    NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Identifer = [infoDictionary objectForKey:@"CFBundleIdentifier"];
+    
+    NSLog(@"%@",docsdir);
+    return [NSString stringWithFormat:@"%@/%@.db",docsdir,app_Identifer];
     
 }
 + (FMDatabase *)db {
@@ -221,7 +224,7 @@
     
     FMDatabase * db = [Service db];
     
-    FMResultSet *rs = [db executeQuery:@"SELECT * FROM medica"];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM medica order by href"];
     
     while ([rs next]) {
         
@@ -232,21 +235,26 @@
         
     }
     
-//    [db open];
-//    
-//    for (int i=0; i< array.count; i++) {
-//        
-//        Model * m = array[i];
-//        
-//        [Service info:m withBlock:^(Model * infoModel, NSError *error) {
-//           
-//            [db executeUpdate:@"REPLACE INTO medica (href, title, info) VALUES (?,?,?)",infoModel.href,infoModel.title,infoModel.info];
-//            
-//            [SVProgressHUD showProgress:i/(1.0 * array.count)];
-//            
-//        }];
-//        
-//    }
+    [db open];
+    
+    int j = 5000;
+    for (int i=j; i< j+500; i++) {
+        
+        Model * m = array[i];
+        
+        [Service info:m withBlock:^(Model * infoModel, NSError *error) {
+            
+            if (error) {
+                
+            }else {
+                [db executeUpdate:@"REPLACE INTO medica (href, title, info) VALUES (?,?,?)",infoModel.href,infoModel.title,infoModel.info];
+                
+                [SVProgressHUD showProgress:i/(1.0 * array.count)];
+            }
+            
+        }];
+        
+    }
 
     return array;
 }

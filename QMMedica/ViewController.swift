@@ -24,8 +24,7 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
         self.mainTableView.tableFooterView = UIView()
         
         self.dataArray = Service.readDB() as! Array<Model>
-        
-        mainSearch.placeholder = "请输入要搜索的内容(\(self.dataArray.count))"
+//        mainSearch.placeholder = "请输入要搜索的内容(\(self.dataArray.count))"
         
 //        SVProgressHUD.showWithStatus("努力加载...", maskType: SVProgressHUDMaskType.Black)
 //        Service.medicaPage(1, withBlock: { (list, error) -> Void in
@@ -42,7 +41,7 @@ class ViewController: UIViewController ,UITableViewDelegate,UITableViewDataSourc
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if self.mainSearch.text.isEmpty {
-            return self.dataArray.count
+            return self.dataArray.count + 1
         }else {
             return self.searchArray.count
         }
