@@ -236,25 +236,25 @@
     }
     
     [db open];
-//    
-//    int j = 5000;
-//    for (int i=j; i< j+500; i++) {
-//        
-//        Model * m = array[i];
-//        
-//        [Service info:m withBlock:^(Model * infoModel, NSError *error) {
-//            
-//            if (error) {
-//                
-//            }else {
-//                [db executeUpdate:@"REPLACE INTO medica (href, title, info) VALUES (?,?,?)",infoModel.href,infoModel.title,infoModel.info];
-//                
-//                [SVProgressHUD showProgress:i/(1.0 * array.count)];
-//            }
-//            
-//        }];
-//        
-//    }
+    
+    int j = 5000;
+    for (int i=j; i< j+500; i++) {
+        
+        Model * m = array[i];
+        
+        [Service info:m withBlock:^(Model * infoModel, NSError *error) {
+            
+            if (error) {
+                
+            }else {
+                [db executeUpdate:@"REPLACE INTO medica (href, title, info) VALUES (?,?,?)",infoModel.href,infoModel.title,infoModel.info];
+                
+                [SVProgressHUD showProgress:i/(1.0 * array.count)];
+            }
+            
+        }];
+        
+    }
 
     return array;
 }
